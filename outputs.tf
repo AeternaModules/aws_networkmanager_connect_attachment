@@ -32,7 +32,7 @@ output "networkmanager_connect_attachments_edge_location" {
 }
 output "networkmanager_connect_attachments_options" {
   description = "Map of options values across all networkmanager_connect_attachments, keyed the same as var.networkmanager_connect_attachments"
-  value       = { for k, v in aws_networkmanager_connect_attachment.networkmanager_connect_attachments : k => v.options if v.options != null && length(v.options) > 0 }
+  value       = { for k, v in aws_networkmanager_connect_attachment.networkmanager_connect_attachments : k => one(v.options) if v.options != null && length(v.options) > 0 }
 }
 output "networkmanager_connect_attachments_owner_account_id" {
   description = "Map of owner_account_id values across all networkmanager_connect_attachments, keyed the same as var.networkmanager_connect_attachments"
